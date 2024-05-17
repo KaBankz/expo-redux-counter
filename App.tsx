@@ -1,9 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text style={styles.title}>Counter</Text>
+      <Text style={styles.subTitle}>Value: 0</Text>
+      <View style={styles.buttonContainer}>
+        <Button title='Increment' />
+        <Button title='Decrement' />
+      </View>
     </View>
   );
 }
@@ -14,5 +19,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '60%',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  subTitle: {
+    fontSize: 18,
+    marginBottom: 20,
   },
 });
