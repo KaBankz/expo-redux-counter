@@ -1,7 +1,7 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { decrement, increment } from './state/counter/counterSlice';
-import { store } from './state/store';
+import { AppDispatch, RootState, store } from './state/store';
 
 export default function MainApp() {
   return (
@@ -12,8 +12,8 @@ export default function MainApp() {
 }
 
 function App() {
-  const count = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
+  const count = useSelector((state: RootState) => state.counter.value);
+  const dispatch: AppDispatch = useDispatch();
 
   return (
     <View style={styles.container}>
