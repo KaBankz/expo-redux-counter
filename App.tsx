@@ -1,19 +1,29 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { decrement, increment } from './state/counter/counterSlice';
 import { store } from './state/store';
 
-export default function App() {
+export default function MainApp() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Counter</Text>
-        <Text style={styles.subTitle}>Value: 0</Text>
-        <View style={styles.buttonContainer}>
-          <Button title='Increment' />
-          <Button title='Decrement' />
-        </View>
-      </View>
+      <App />
     </Provider>
+  );
+}
+
+function App() {
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Counter</Text>
+      <Text style={styles.subTitle}>Value: {count}</Text>
+      <View style={styles.buttonContainer}>
+        <Button title='Increment' onPress={() => dispatch(increment())} />
+        <Button title='Decrement' onPress={() => dispatch(decrement())} />
+      </View>
+    </View>
   );
 }
 
