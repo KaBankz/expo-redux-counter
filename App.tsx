@@ -1,15 +1,19 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { store } from './state/store';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Counter</Text>
-      <Text style={styles.subTitle}>Value: 0</Text>
-      <View style={styles.buttonContainer}>
-        <Button title='Increment' />
-        <Button title='Decrement' />
+    <Provider store={store}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Counter</Text>
+        <Text style={styles.subTitle}>Value: 0</Text>
+        <View style={styles.buttonContainer}>
+          <Button title='Increment' />
+          <Button title='Decrement' />
+        </View>
       </View>
-    </View>
+    </Provider>
   );
 }
 
