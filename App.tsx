@@ -1,6 +1,11 @@
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { decrement, increment } from './state/counter/counterSlice';
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+} from './state/counter/counterSlice';
 import { AppDispatch, RootState, store } from './state/store';
 
 export default function MainApp() {
@@ -14,6 +19,7 @@ export default function MainApp() {
 function App() {
   const count = useSelector((state: RootState) => state.counter.value);
   const dispatch: AppDispatch = useDispatch();
+  const [incrementAmount, setIncrementAmount] = useState('');
 
   return (
     <View style={styles.container}>
@@ -22,6 +28,18 @@ function App() {
       <View style={styles.buttonContainer}>
         <Button title='Increment' onPress={() => dispatch(increment())} />
         <Button title='Decrement' onPress={() => dispatch(decrement())} />
+      </View>
+      <View>
+        <TextInput
+          style={styles.input}
+          onChangeText={setIncrementAmount}
+          value={incrementAmount}
+          keyboardType='numeric'
+        />
+        <Button
+          title='Increment'
+          onPress={() => dispatch(incrementByAmount(Number(incrementAmount)))}
+        />
       </View>
     </View>
   );
@@ -35,7 +53,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonContainer: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '60%',
@@ -47,5 +64,11 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 18,
     marginBottom: 20,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
