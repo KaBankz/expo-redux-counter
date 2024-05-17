@@ -25,7 +25,7 @@ export default function MainApp() {
 
 function App() {
   const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [incrementAmount, setIncrementAmount] = useState('');
 
   return (
