@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  Button,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import {
   decrement,
@@ -22,7 +29,7 @@ function App() {
   const [incrementAmount, setIncrementAmount] = useState('');
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Counter</Text>
       <Text style={styles.subTitle}>Value: {count}</Text>
       <View style={styles.buttonContainer}>
@@ -41,7 +48,7 @@ function App() {
           onPress={() => dispatch(incrementByAmount(Number(incrementAmount)))}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -50,7 +57,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   buttonContainer: {
     flexDirection: 'row',
